@@ -1,9 +1,25 @@
 import "./App.scss";
+import Header from "./components/header";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/home";
+import Login from "./pages/login";
 
 function App() {
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: <Home />,
+            children: [
+                {
+                    path: "/login",
+                    element: <Login />,
+                }
+            ]
+        },
+    ]);
     return (
         <div className="App">
-            <h1>Hello World</h1>
+            <RouterProvider router={router} />{" "}
         </div>
     );
 }
