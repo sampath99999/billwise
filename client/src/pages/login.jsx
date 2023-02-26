@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { RxLockClosed } from "react-icons/rx";
 import { FaGg } from "react-icons/fa";
+import { login } from "./../api/auth";
+import { useDispatch } from "react-redux";
+import { login as loginAction } from "./../features/user/userSlice";
+
 function Login() {
+    let [formData, setFormData] = useState({
+        username: "",
+        password: "",
+        rememberMe: false,
+    });
+    const dispatch = useDispatch();
+    const handleSubmit = async function (e) {
+        e.preventDefault();
+        let response = await login(formData.username, formData.password);
+        if (response) {
+            dispatch(loginAction());
+        }
+    };
     return (
         <div>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-md space-y-8">
                     <div>
-                        <FaGg className="text-blue-600 text-5xl mx-auto"/>
+                        <FaGg className="text-blue-600 text-5xl mx-auto" />
                         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                             Sign in to your account
                         </h2>
@@ -21,40 +38,54 @@ function Login() {
                             </a>
                         </p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
-                        <input
-                            type="hidden"
-                            name="remember"
-                            defaultValue="true"
-                        />
+                    <form
+                        className="mt-8 space-y-6"
+                        action="#"
+                        method="POST"
+                        onSubmit={handleSubmit}
+                    >
                         <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-5">
                             <div>
                                 <label
-                                    htmlFor="email-address"
+                                    htmlFor="username"
                                     className="font-medium text-gray-600"
                                 >
-                                    Email address
+                                    Username
                                 </label>
                                 <input
-                                    id="email-address"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
-                                    required
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    // required
+                                    value={formData.username}
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            username: e.target.value,
+                                        });
+                                    }}
                                     className="relative block w-full appearance-none rounded-md border border-gray-300 p-2 px-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
                             <div>
-                                <label htmlFor="password" className="font-medium text-gray-600">
+                                <label
+                                    htmlFor="password"
+                                    className="font-medium text-gray-600"
+                                >
                                     Password
                                 </label>
                                 <input
                                     id="password"
                                     name="password"
                                     type="password"
-                                    autoComplete="current-password"
-                                    required
-                                    // className="block w-full text-gray-900 p-2 px-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                                    // required
+                                    value={formData.password}
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            password: e.target.value,
+                                        });
+                                    }}
                                     className="relative block w-full appearance-none rounded-md border border-gray-300 p-2 px-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 />
                             </div>
@@ -66,6 +97,12 @@ function Login() {
                                     id="remember-me"
                                     name="remember-me"
                                     type="checkbox"
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            rememberMe: e.target.checked,
+                                        });
+                                    }}
                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label

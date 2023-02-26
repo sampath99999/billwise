@@ -12,8 +12,10 @@ const { hashPassword } = require("./helpers/bcrypt");
 const { errorConverter, errorHandler } = require("./middlewares/error");
 const ApiError = require("./utils/ApiError");
 const httpStatus = require("http-status");
+var cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 app.use(logger("dev"));
 app.use(express.json());

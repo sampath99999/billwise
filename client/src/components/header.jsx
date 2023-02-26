@@ -2,10 +2,11 @@ import { Dialog } from "@headlessui/react";
 import React, { useState } from "react";
 import { FaGg } from "react-icons/fa";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+    const loggedIn = useSelector((state) => state.user.loggedIn);
     return (
         <div>
             <header className="bg-white">
@@ -59,17 +60,30 @@ function Header() {
 
                     {/* Login and Get Started */}
                     <div className="hidden lg:flex lg:gap-x-5 items-center">
-                        <Link
-                            to="login"
-                            className="text-sm font-semibold leading-6 text-gray-500"
-                        >
-                            Login
-                        </Link>
-                        <a href="#">
-                            <button className="bg-blue-500 text-white p-2 px-5 rounded-md">
-                                Get Started
-                            </button>
-                        </a>
+                        {!loggedIn && (
+                            <>
+                                <Link
+                                    to="login"
+                                    className="text-sm font-semibold leading-6 text-gray-500"
+                                >
+                                    Login
+                                </Link>
+                                <a href="#">
+                                    <button className="bg-blue-500 text-white p-2 px-5 rounded-md">
+                                        Get Started
+                                    </button>
+                                </a>
+                            </>
+                        )}
+                        {loggedIn && (
+                            <>
+                                <a href="#">
+                                    <button className="bg-blue-500 text-white p-2 px-5 rounded-md">
+                                        Dashboard
+                                    </button>
+                                </a>
+                            </>
+                        )}
                     </div>
 
                     {/* Mobile Menu */}
