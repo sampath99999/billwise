@@ -10,10 +10,17 @@ import Login from "./pages/login";
 import { Toaster } from "react-hot-toast";
 import { verify } from "./api/auth";
 import { useDispatch, useSelector } from "react-redux";
+import Dashboard from "./pages/dashboard";
 
 function App() {
     verify();
     const loggedIn = useSelector((state) => state.user.loggedIn);
+    const authLoader = () => {
+        if (!loggedIn) {
+            return redirect("/");
+        }
+        return null;
+    };
     const router = createBrowserRouter([
         {
             path: "/",
@@ -30,6 +37,11 @@ function App() {
                     },
                 },
             ],
+        },
+        {
+            path: "/dashboard",
+            element: <Dashboard />,
+            loader: authLoader,
         },
     ]);
     return (

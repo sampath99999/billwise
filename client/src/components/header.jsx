@@ -77,11 +77,11 @@ function Header() {
                         )}
                         {loggedIn && (
                             <>
-                                <a href="#">
+                                <Link to="/dashboard">
                                     <button className="bg-blue-500 text-white p-2 px-5 rounded-md">
                                         Dashboard
                                     </button>
-                                </a>
+                                </Link>
                             </>
                         )}
                     </div>

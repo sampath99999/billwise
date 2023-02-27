@@ -2,8 +2,13 @@ import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import instance from "./axios";
-import { login as loginAction, setUser } from "../features/user/userSlice";
+import {
+    login as loginAction,
+    logout,
+    setUser,
+} from "../features/user/userSlice";
 import authInstance from "./axios_authed";
+import { redirect } from "react-router-dom";
 
 export let login = async function (username, password) {
     if (!username) {
@@ -42,7 +47,7 @@ export let verify = async function () {
             dispatch(setUser(response.data));
         } catch (e) {
             if (e instanceof AxiosError) {
-                toast.error("Error from Server");
+                dispatch(logout());
                 return false;
             }
             toast.error("Something went wrong");

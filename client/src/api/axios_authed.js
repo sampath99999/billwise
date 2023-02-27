@@ -1,6 +1,8 @@
 import axios from "axios";
 import { redirect } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { logout } from "../features/user/userSlice";
 
 const authInstance = axios.create({
     baseURL: "http://localhost:5000/api/v1/", // Replace with your API base URL
@@ -29,8 +31,8 @@ authInstance.interceptors.response.use(
         if (error.response.status === 401) {
             // Handle unauthorized error (e.g., redirect to login page)
             localStorage.clear();
+            redirect("/");
             toast.error("Login again!");
-            redirect("/login");
         }
         return Promise.reject(error);
     }
