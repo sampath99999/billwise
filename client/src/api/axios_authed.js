@@ -1,11 +1,10 @@
 import axios from "axios";
 import { redirect } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { logout } from "../features/user/userSlice";
+import getBaseUrl from "./url";
 
 const authInstance = axios.create({
-    baseURL: "http://192.168.1.6:5000/api/v1/", // Replace with your API base URL
+    baseURL: getBaseUrl(), // Replace with your API base URL
 });
 
 // Add request interceptor to attach the token to every request
