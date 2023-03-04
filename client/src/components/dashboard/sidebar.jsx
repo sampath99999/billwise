@@ -20,6 +20,7 @@ function Sidebar(props) {
         {
             name: "Dashboard",
             icon: <RxDashboard className="text-xl" />,
+            link: "/dashboard",
         },
         {
             name: "Customers",
@@ -32,6 +33,7 @@ function Sidebar(props) {
         {
             name: "Assets",
             icon: <AiOutlineUnorderedList className="text-xl" />,
+            link: "/dashboard/assets",
         },
         {
             name: "Reports",
@@ -67,20 +69,13 @@ function Sidebar(props) {
 
             {/* Search */}
             <div className="p-3 flex ">
-                <form action="#">
-                    <div className="flex bg-gray-100 border rounded-md">
-                        <input
-                            id="search"
-                            type="search"
-                            placeholder="Search..."
-                            name="search"
-                            className="block bg-transparent w-full appearance-none p-2 px-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        />
-                        <button className=" text-indigo-700 border-l border-l-gray-300 p-2 rounded-r-md">
-                            <FaSearch />
-                        </button>
-                    </div>
-                </form>
+                <input
+                    id="search"
+                    type="search"
+                    placeholder="Search..."
+                    name="search"
+                    className="border w-full rounded-lg bg-gray-50 appearance-none p-2 px-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                />
             </div>
 
             {/* Menu */}
@@ -90,14 +85,14 @@ function Sidebar(props) {
                 </small>
                 <div className="flex flex-col">
                     {menuItems.map((menuItem, index) => (
-                        <a
-                            href="#"
+                        <Link
+                            to={menuItem.link}
                             className="flex items-center gap-3 text-base my-1 text-slate-700 hover:bg-slate-200 py-2 px-1"
                             key={index}
                         >
                             {menuItem.icon}
                             <span>{menuItem.name}</span>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>
