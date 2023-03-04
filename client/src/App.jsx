@@ -6,6 +6,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import Home from "./pages/home";
+import DashboardHome from "./pages/dashboard/home";
 import Login from "./pages/login";
 import { Toaster } from "react-hot-toast";
 import { verify } from "./api/auth";
@@ -42,6 +43,12 @@ function App() {
             path: "/dashboard",
             element: <Dashboard />,
             loader: authLoader,
+            children: [
+                {
+                    path: "",
+                    element: <DashboardHome />,
+                },
+            ],
         },
     ]);
     return (

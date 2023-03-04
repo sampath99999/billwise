@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../features/user/userSlice";
 
 const authInstance = axios.create({
-    baseURL: "http://localhost:5000/api/v1/", // Replace with your API base URL
+    baseURL: "http://192.168.1.6:5000/api/v1/", // Replace with your API base URL
 });
 
 // Add request interceptor to attach the token to every request

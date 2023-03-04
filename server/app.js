@@ -23,10 +23,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 mongoose.set("strictQuery", true);
-mongoose.connect(process.env.DB, (err) => {
-    if (err) throw err;
-    console.log("Database connected!");
-});
+mongoose.connect(
+    process.env.DB,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    (err) => {
+        if (err) throw err;
+        console.log("Database connected!");
+    }
+);
 
 app.use("/api/v1/", v1Router);
 
