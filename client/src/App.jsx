@@ -12,6 +12,7 @@ import { Toaster } from "react-hot-toast";
 import { verify } from "./api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Dashboard from "./pages/dashboard";
+import Assets from "./pages/dashboard/assets";
 
 function App() {
     verify();
@@ -47,6 +48,10 @@ function App() {
                 {
                     path: "",
                     element: <DashboardHome />,
+                },
+                {
+                    path: "assets",
+                    element: <Assets />,
                 },
             ],
         },
