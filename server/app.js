@@ -6,8 +6,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 const v1Router = require("./routes/v1.0/index");
-const Network = require("./models/network.model");
-const User = require("./models/user.model");
+
 const { hashPassword } = require("./helpers/bcrypt");
 const { errorConverter, errorHandler } = require("./middlewares/error");
 const ApiError = require("./utils/ApiError");
@@ -41,38 +40,5 @@ app.use((req, res, next) => {
 app.use(errorConverter);
 // handle error
 app.use(errorHandler);
-
-Network.findOne({ phoneNumber: "9989079159" }, (err, network) => {
-    if (err) throw err;
-    if (!network) {
-        network = new Network({
-            name: "Sampath Cable Network",
-            email: "sampathbandla199@gmail.com",
-            phoneNumber: "9989079159",
-            address: "7-25 Prodduturu",
-            city: "Khammam",
-            state: "Telangana",
-            zipcode: "507208",
-            status: true,
-        });
-        network.save();
-        console.log("Network Created!");
-    }
-    User.findOne({ username: "sampath9989" }, async function (err, user) {
-        if (err) throw err;
-        if (!user) {
-            let password = await hashPassword("12345");
-            let user = new User({
-                name: "Sampath",
-                username: "sampath9989",
-                password: password,
-                networkId: network._id,
-                role: "admin",
-            });
-            user.save();
-            console.log("User Created!");
-        }
-    });
-});
 
 module.exports = app;
