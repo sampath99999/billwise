@@ -25,7 +25,7 @@ function Dashboard() {
                     mobileMenuOpen={mobileMenuOpen}
                     setMobileMenuOpen={setMobileMenuOpen}
                 />
-                <div className="content p-2 h-full bg-white">
+                <div className="content p-3 h-full bg-white">
                     <Outlet />
                 </div>
             </div>

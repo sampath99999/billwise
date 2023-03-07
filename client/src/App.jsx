@@ -13,6 +13,7 @@ import { verify } from "./api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Dashboard from "./pages/dashboard";
 import Assets from "./pages/dashboard/assets";
+import Villages from "./pages/dashboard/villages";
 
 function App() {
     verify();
@@ -52,6 +53,10 @@ function App() {
                 {
                     path: "assets",
                     element: <Assets />,
+                },
+                {
+                    path: "villages",
+                    element: <Villages />,
                 },
             ],
         },
