@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { GiVillage } from "react-icons/gi";
 
 function Assets() {
     return (
@@ -29,7 +30,7 @@ function Assets() {
 
                 <hr />
 
-                <p className="text-sm text-gray-500 mt-1 text-justify">
+                <p className="text-sm text-gray-500 mt-1 w-3/4 text-justify">
                     In the Assets section of our dashboard, you can manage your
                     cable network's critical components. This includes managing
                     users, villages, streets, and service packages. With our
@@ -37,6 +38,16 @@ function Assets() {
                     performance, improve customer satisfaction, and streamline
                     operations.
                 </p>
+
+                <div className="flex mt-3">
+                    <div
+                        className="flex flex-col p-5 items-center border-2 shadow-lg hover:bg-gray-200"
+                        role="button"
+                    >
+                        <GiVillage className="text-5xl" />
+                        <small className="text-xl">Villages</small>
+                    </div>
+                </div>
             </nav>
         </div>
     );
