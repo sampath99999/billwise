@@ -8,10 +8,7 @@ const levels = {
 };
 const logger = winston.createLogger({
     format: winston.format.json(),
-    transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({ filename: "./logs/app.log" }),
-    ],
+    transports: [new winston.transports.File({ filename: "./logs/app.log" })],
 });
 
 module.exports = logger;
