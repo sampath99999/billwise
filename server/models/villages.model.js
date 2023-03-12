@@ -1,19 +1,24 @@
 const mongoose = require("mongoose");
 
-const villageSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
+const villageSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        networkId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Network",
+            required: true,
+        },
+        status: {
+            type: Boolean,
+        },
     },
-    networkId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Network",
-        required: true,
-    },
-    status: {
-        tye: Boolean,
-    },
-});
+    {
+        timestamps: true,
+    }
+);
 
 const Village = mongoose.model("Village", villageSchema);
 
