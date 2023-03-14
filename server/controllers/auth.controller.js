@@ -15,7 +15,17 @@ const login = catchAsync(async (req, res) => {
         networkId: user.networkId._id,
         type: user.role,
     });
-    res.status(httpStatus.OK).json({ message: "Success", token, user });
+    res.status(httpStatus.OK).json({
+        message: "Success",
+        token,
+        user: {
+            id: user._id,
+            name: user.name,
+            username: user.username,
+            networkId: user.networkId._id,
+            type: user.role,
+        },
+    });
 });
 
 const verify = catchAsync(async (req, res) => {

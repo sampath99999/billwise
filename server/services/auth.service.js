@@ -24,6 +24,7 @@ const loginUser = async function (username, password) {
             httpStatus.UNAUTHORIZED,
             "Network was in Inactive State, Please contact Sales Department"
         );
+
     return user;
 };
 
